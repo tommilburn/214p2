@@ -38,7 +38,16 @@ void printList(SortedListPtr list){
  *
  * You need to fill in this function as part of your implementation.
  */
-void SLDestroy(SortedListPtr list);
+void SLDestroy(SortedListPtr list){
+    NodePtr current = list->head;
+    NodePtr temp = current->next;
+    while(current!=null){
+        list->destructFunction(current->data);
+        free(current);
+        current=temp;
+        temp=current->next;
+    }
+}
 
 
 /*

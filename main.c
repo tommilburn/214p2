@@ -57,4 +57,5 @@ int main(){
 	SLRemove(list, &c);
 	SLInsert(list, &e);
 	SLInsert(list, &f);
+	SLDestroy(list);
 }
