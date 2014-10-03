@@ -43,7 +43,7 @@ void SLDestroy(SortedListPtr list){
     NodePtr temp = current->next;
     
     while(current != NULL){
-        printf("Freeing node...\n");
+        // printf("Freeing node...\n");
         list->destructFunction(current->data);
         free(current);
         current=temp;
