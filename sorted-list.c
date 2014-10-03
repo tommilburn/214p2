@@ -109,6 +109,7 @@ int SLInsert(SortedListPtr list, void *newObj){
 		printList(list);
 
 	}
+	free(newNode);
 	return 0;
 };
 
