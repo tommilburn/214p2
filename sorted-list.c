@@ -41,12 +41,23 @@ void printList(SortedListPtr list){
 void SLDestroy(SortedListPtr list){
     NodePtr current = list->head;
     NodePtr temp = current->next;
-    while(current!=NULL){
+    int i;
+    // while(current!=NULL){
+    //     list->destructFunction(current->data);
+    //     free(current);
+    //     current=temp;
+    //     temp=current->next;
+    // }
+    while(current != NULL){
+        printf("Freeing node...\n");
         list->destructFunction(current->data);
         free(current);
         current=temp;
-        temp=current->next;
+        if(current != NULL){
+            temp=current->next;
+        }
     }
+    printf("Memory freed!\n");
 }
 
 
