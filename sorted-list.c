@@ -17,7 +17,7 @@ SortedListPtr SLCreate(CompareFuncT cf, DestructFuncT df){
 		list->destructFunction = df;
 		list->length = 0;
 		list->head = NULL;
-		printf("created list\n");
+		//printf("created list\n");
 		return list;
 	}
 	return NULL;
@@ -41,13 +41,7 @@ void printList(SortedListPtr list){
 void SLDestroy(SortedListPtr list){
     NodePtr current = list->head;
     NodePtr temp = current->next;
-    int i;
-    // while(current!=NULL){
-    //     list->destructFunction(current->data);
-    //     free(current);
-    //     current=temp;
-    //     temp=current->next;
-    // }
+    
     while(current != NULL){
         printf("Freeing node...\n");
         list->destructFunction(current->data);
@@ -57,7 +51,8 @@ void SLDestroy(SortedListPtr list){
             temp=current->next;
         }
     }
-    printf("Memory freed!\n");
+    
+    //printf("Memory freed!\n");
 }
 
 
@@ -73,19 +68,19 @@ void SLDestroy(SortedListPtr list){
  */
 
 int SLInsert(SortedListPtr list, void *newObj){
-	printf("inserting %d\n", *(int*)newObj);
+	//printf("inserting %d\n", *(int*)newObj);
 	NodePtr newNode = malloc(sizeof(struct Node));
 	newNode->data = newObj;
 	newNode->next = NULL;
 	newNode->previous = NULL;
 	NodePtr curr, prev;
 	if(list->head == NULL){ //list is empty
-		printf("empty list\n");
+		//printf("empty list\n");
 		list->head = newNode;
 		list->length++;
 		return 1;
 	} else {
-		printf("non empty list\n");
+		//printf("non empty list\n");
 		prev = NULL;
 		for(curr = list->head; curr != NULL; curr = curr->next){ //scariest for loop ever
 			// printf("prev:\n%p\ncurr\n%p\n", prev, curr);
@@ -93,7 +88,7 @@ int SLInsert(SortedListPtr list, void *newObj){
 			if(compareValue > 0){
 			//new is bigger than current
 				if(prev == NULL){
-					printf("first item in list\n");
+					//printf("first item in list\n");
 					newNode->next = curr;
 					list->head = newNode;
 					curr->previous = newNode;
@@ -110,7 +105,7 @@ int SLInsert(SortedListPtr list, void *newObj){
 		//smallest and last item
 		prev->next = newNode;
 		newNode->previous = prev;
-		printf("loop done\n");
+		//printf("loop done\n");
 		printList(list);
 
 	}
@@ -136,15 +131,16 @@ int SLRemove(SortedListPtr list, void *newObj){
 			list->destructFunction(curr->data);
 
 			curr->data = NULL;
-			printf("got here\n");
+// 			printf("got here\n");
 			if(curr->previous == NULL){
-				printf("null\n");
+			    // What this???
+				// printf("null\n");
 			}
 			curr->previous->next = curr->next;
-						printf("got here\n");
+				// 		printf("got here\n");
 
 			curr->next->previous = curr->previous;
-			printf("got done\n");
+// 			printf("got done\n");
 
 			return 1;
 		}
@@ -166,7 +162,7 @@ int SLRemove(SortedListPtr list, void *newObj){
  */
 
 SortedListIteratorPtr SLCreateIterator(SortedListPtr list){
-	printf("creating iter\n");
+// 	printf("creating iter\n");
 	SortedListIteratorPtr iter = malloc(sizeof(struct SortedListIterator));
 	iter->curr = list->head;
 	return iter;
@@ -197,7 +193,7 @@ void SLDestroyIterator(SortedListIteratorPtr iter){
 
 void * SLGetItem( SortedListIteratorPtr iter ){
 	if(iter->curr != NULL){
-		printf("returning data\n");
+// 		printf("returning data\n");
 		return iter->curr->data;
 	} else {
 		return 0;
