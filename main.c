@@ -60,8 +60,8 @@ int main(){
 	SLInsert(list, &e);
 	SLInsert(list, &f);
 	SLDestroy(list);
-	SLInsert(strList,str1);
-	SLInsert(strList,str2);
-	SLInsert(strList,str3);
+	SLInsert(strList,&str1);
+	SLInsert(strList,&str2);
+	SLInsert(strList,&str3);
 	SLDestroy(strList);
 }
