@@ -1,4 +1,5 @@
 Most of our testing was done on (int) datatypes. Our code, outside of
 the printlist function, does not explicitly expect ints at any point. We are,
 therefore, relatively certain that our list will work for any datatype. 
-Testing _was_ done with all expected types and no issues were found.
+To clarify, testing _was_ done with all expected types and no issues were found;
+however, we did not write separate printing functions.
