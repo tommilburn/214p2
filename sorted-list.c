@@ -66,24 +66,26 @@ int SLInsert(SortedListPtr list, void *newObj){
 		return 1;
 	} else {
 		printf("non empty list\n");
-		for(curr = list->head, prev = NULL; curr != NULL; prev = curr, curr = curr->next){ //scariest for loop ever
-			printf("for loop\n");
+		prev = NULL;
+		for(curr = list->head; curr != NULL; curr = curr->next){ //scariest for loop ever
+			// printf("prev:\n%p\ncurr\n%p\n", prev, curr);
 			int compareValue = list->compareFunction(newNode->data, curr->data);
-			printf("compareValue: %d\n", compareValue);
 			if(compareValue > 0){
 			//new is bigger than current
 				if(prev == NULL){
 					printf("first item in list\n");
 					newNode->next = curr;
 					list->head = newNode;
+					curr->previous = newNode;
 				} else {
 					newNode->next = curr;
 					prev->next = newNode;
 					newNode->previous = prev;
 				}
-				printList(list);
 				return 1;
 			}
+			prev = curr;
+
 		}
 		//smallest and last item
 		prev->next = newNode;
@@ -115,6 +117,9 @@ int SLRemove(SortedListPtr list, void *newObj){
 
 			curr->data = NULL;
 			printf("got here\n");
+			if(curr->previous == NULL){
+				printf("null\n");
+			}
 			curr->previous->next = curr->next;
 						printf("got here\n");
 
