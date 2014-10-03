@@ -41,7 +41,7 @@ void printList(SortedListPtr list){
 void SLDestroy(SortedListPtr list){
     NodePtr current = list->head;
     NodePtr temp = current->next;
-    while(current!=null){
+    while(current!=NULL){
         list->destructFunction(current->data);
         free(current);
         current=temp;
