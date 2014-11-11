@@ -43,9 +43,8 @@ void SLDestroy(SortedListPtr list){
     NodePtr temp = current->next;
     
     while(current != NULL){
-        // printf("Freeing node...\n");
-        list->destructFunction(current->data);
-        free(current);
+		list->destructFunction(current->data);
+       	free(current);
         current=temp;
         if(current != NULL){
             temp=current->next;
@@ -106,7 +105,7 @@ int SLInsert(SortedListPtr list, void *newObj){
 		prev->next = newNode;
 		newNode->previous = prev;
 		//printf("loop done\n");
-		printList(list);
+		//printList(list);
 
 	}
 	free(newNode);

@@ -49,8 +49,13 @@ void destroyBasicTypeNoAlloc(void *p) {
 
 int main(){
 	SortedListPtr list = SLCreate(compareInts, destroyBasicTypeNoAlloc);
-	SortedListPtr strList = SLCreate(compareStrings,destroyBasicTypeAlloc);
+	SortedListPtr strList = SLCreate(compareStrings,destroyBasicTypeNoAlloc);
+	SortedListPtr strList2 = SLCreate(compareStrings,destroyBasicTypeAlloc);
 	char* str1 = "Show me your moves!", str2 = "You're too slow!", str3 = "BWAAGH";
+	char* str4 = malloc(sizeof(char)*3);
+	str4[0]='a';
+	str4[1]='b';
+	str4[2]='\0';
 	int a = 10, b = 20, c = 30, d = 40, e = 25, f = 5;
 	SLInsert(list, &a);
 	SLInsert(list, &b);
@@ -64,4 +69,6 @@ int main(){
 	SLInsert(strList,&str2);
 	SLInsert(strList,&str3);
 	SLDestroy(strList);
+	SLInsert(strList2,str4);
+	SLDestroy(strList2);
 }
